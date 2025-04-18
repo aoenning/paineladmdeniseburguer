@@ -83,7 +83,7 @@ export const BoxLiAdicional = styled.li`
 export const InfoRow = styled.p`
   margin: 6px 0;
   color: #5d4037;
-  font-size: 1rem;
+  font-size: 0.8rem;
 `;
 
 export const Steps = styled.div`
@@ -174,4 +174,61 @@ export const AddButton = styled.button`
   margin-top: 5px;
   margin-bottom: ${(props) =>
     props.marginButton ? props.marginButton : "5px"};
+`;
+
+export const Button = styled.button`
+  padding: 0.5rem 1rem;
+  background-color: ${(props) =>
+    props.backgroundColor ? props.backgroundColor : colors.brack};
+  color: ${(props) => (props.color ? props.color : colors.brack)};
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: ${fonts.primary};
+  &:hover {
+    color: #ff9800;
+  }
+`;
+
+// Estilização da barra de navegação inferior
+export const NavBar = styled.nav`
+  /* position: fixed; */
+  /* bottom: 0; */
+  /* left: 0; */
+  width: 100%;
+  height: 20px;
+  /* background: ${colors.laraja}; */
+  /* box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1); */
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  padding: 5px 0;
+  z-index: 1000;
+  margin-left: 5px;
+  font-family: ${fonts.primary};
+  cursor: pointer;
+
+  &:hover {
+    /* color: #ff9800; */
+    border-bottom: 1px solid #9da4aa;
+    /* background-color: ${colors.brack}; */
+  }
+`;
+
+export const NavItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: ${colors.brack};
+  font-size: 13px;
+  padding: 10px;
+  font-family: ${fonts.segudary};
+  /* font-size: 5px; */
+  text-align: right;
+  &.active {
+    color: ${colors.brack};
+    font-weight: bold;
+  }
 `;

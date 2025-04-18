@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { colors, fonts } from "./../../Styles";
 import * as s from "./styles";
 import moment from "moment/moment";
+import { color } from "framer-motion";
 
 export default function Pedidos() {
   const [pedidos, setPedidos] = useState([]);
@@ -66,16 +67,50 @@ export default function Pedidos() {
     <s.Container>
       <s.Title>Pedidos</s.Title>
       <s.BoxButton>
-        <s.AreaBotton>
-          <s.AddButton onClick={() => {}}>Pedentes</s.AddButton>
-        </s.AreaBotton>
-        <s.AreaBotton>
-          <s.AddButton onClick={() => {}}>Prep</s.AddButton>
-        </s.AreaBotton>
-        <s.AreaBotton>
-          <s.AddButton onClick={() => {}}>Ok</s.AddButton>
-        </s.AreaBotton>
+        <s.Button
+          backgroundColor={colors.header}
+          color={colors.white}
+          onClick={() => {}}
+        >
+          Pedentes
+        </s.Button>
+        <s.Button
+          backgroundColor={colors.green}
+          color={colors.white}
+          onClick={() => {}}
+        >
+          Preparacao
+        </s.Button>
+        <s.Button
+          backgroundColor={colors.brue}
+          color={colors.white}
+          onClick={() => {}}
+        >
+          Rota
+        </s.Button>
+        <s.Button
+          backgroundColor={colors.laraja}
+          color={colors.white}
+          onClick={() => {}}
+        >
+          Entregue
+        </s.Button>
+        <s.Button
+          backgroundColor={colors.red}
+          color={colors.white}
+          onClick={() => {}}
+        >
+          Cancelado
+        </s.Button>
       </s.BoxButton>
+
+      {/* <s.NavBar>
+        <s.NavItem to="/">Preparando</s.NavItem>
+        <s.NavItem to="/Pedidos">Pedidos</s.NavItem>
+        <s.NavItem to="/Pedidos">Pedidos</s.NavItem>
+        <s.NavItem to="/Carrinho">Carrinho</s.NavItem>
+      </s.NavBar> */}
+
       {pedidos?.map((i, indexa) => (
         <s.PedidoInfo key={indexa}>
           <s.InfoRow>
@@ -94,6 +129,12 @@ export default function Pedidos() {
             <strong>Endereco:</strong> {i.cliente.rua}
           </s.InfoRow>
           <s.InfoRow>
+            <strong>Numero:</strong> {i.cliente.numero}
+          </s.InfoRow>
+          <s.InfoRow>
+            <strong>Compplemento:</strong> {i.cliente.complemento}
+          </s.InfoRow>
+          <s.InfoRow>
             <strong>Bairro:</strong> {i.cliente.bairro}
           </s.InfoRow>
           <s.InfoRow>
@@ -102,8 +143,11 @@ export default function Pedidos() {
           <s.InfoRow>
             <strong>Troco:</strong> {i.troco.valor}
           </s.InfoRow>
+          {/* <s.InfoRow>
+            <strong>Tipo queijo:</strong> {i.tipoQueijo}
+          </s.InfoRow> */}
           <s.InfoRow>
-            <strong>Telefone:</strong>{" "}
+            <strong>Total:</strong>{" "}
             {i.total.toLocaleString("pt-BR", {
               style: "currency",
               currency: "BRL",
@@ -114,7 +158,7 @@ export default function Pedidos() {
             <ul>
               {i.itens?.map((item, index) => (
                 <s.BoxLi key={index}>
-                  {item.nome}
+                  {item.quantidade}x {item.nome} com {item.tipoQueijo}
                   {item.adicionais && item.adicionais.length > 0 && (
                     <ul>
                       {item.adicionais

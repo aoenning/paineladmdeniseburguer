@@ -1,6 +1,11 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Denise Burguer - Artesanal na Brasa",
+  "short_name": "DeniseBurguer",
+  "description": "Gestão da hamburgueria artesanal Denise Burguer",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#111111",
   "icons": [
     {
       "src": "favicon.ico",

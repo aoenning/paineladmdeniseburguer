@@ -50,14 +50,32 @@ export default function Sidebar() {
   return (
     <SidebarContainer isOpen={isOpen}>
       <ToggleButton onClick={() => setIsOpen(!isOpen)}>☰</ToggleButton>
-      <NavItem to="/" active={(location.pathname === "/").toString()}>
+      {/* <NavItem to="/" active={(location.pathname === "/").toString()}>
         🛒 Pedidos
+      </NavItem> */}
+      <NavItem to="/" active={(location.pathname === "/").toString()}>
+        🛒 Painel pedidos
       </NavItem>
+      {/* <NavItem
+        to="/"
+        active={(location.pathname === "/").toString()}
+      >
+        🛒 Painel pedidos
+      </NavItem> */}
       <NavItem
         to="/cadastro"
         active={(location.pathname === "/cadastro").toString()}
       >
         🍔 Cadastrar Produto
+      </NavItem>
+      <NavItem to="/caixa" active={(location.pathname === "/caixa").toString()}>
+        🧾 Caixa
+      </NavItem>
+      <NavItem
+        to="/relatorio"
+        active={(location.pathname === "/relatorio").toString()}
+      >
+        📊Relatório
       </NavItem>
     </SidebarContainer>
   );

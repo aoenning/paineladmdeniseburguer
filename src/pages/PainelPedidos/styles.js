@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { colors, fonts } from "../../Styles";
 
 export const Container = styled.div`
-  /* padding: 0rem; */
-  background: #333;
+  padding: 0.5rem;
+  background: #fff;
   color: #fff;
   /* font-family: "Courier New", monospace; */
   /* height: 100vh; */
@@ -11,6 +11,8 @@ export const Container = styled.div`
 
 export const Titulo = styled.h1`
   text-align: center;
+  color: ${colors.white};
+  font-family: ${fonts.primary};
   /* margin-bottom: 2rem; */
 `;
 
@@ -68,7 +70,7 @@ export const UlCard = styled.ul`
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 0.7rem;
 `;
 
 export const Coluna = styled.div`
@@ -82,7 +84,7 @@ export const Coluna = styled.div`
 export const StatusTitle = styled.p`
   text-align: center;
   margin-bottom: 1rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-family: ${fonts.primary};
   color: ${colors.white};
 `;
@@ -129,4 +131,14 @@ export const AreaSub = styled.div`
   margin-top: 1rem;
   /* padding: 0.5rem; */
   /* border-radius: 4px; */
+`;
+
+export const AreaTitulo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0px 0px 07px 1px;
+  border-radius: 8px;
+  background-color: ${colors.header};
 `;

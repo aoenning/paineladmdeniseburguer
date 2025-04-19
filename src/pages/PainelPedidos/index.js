@@ -54,7 +54,9 @@ const PainelPedidos = () => {
 
   return (
     <s.Container>
-      <s.Titulo>PAINEL DE PEDIDOS</s.Titulo>
+      <s.AreaTitulo>
+        <s.Titulo>PAINEL DE PEDIDOS</s.Titulo>
+      </s.AreaTitulo>
       <s.Grid>
         {statuses
           .filter((status) => status !== "finalizado")

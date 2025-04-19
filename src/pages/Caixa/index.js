@@ -14,6 +14,7 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import { db } from "../../firebase";
+import moment from "moment";
 
 const Container = styled.div`
   background: #fff4e6;
@@ -66,11 +67,12 @@ export default function CaixaSimplificado() {
   const hoje = new Date();
   hoje.setHours(0, 0, 0, 0);
   const timestampHoje = Timestamp.fromDate(hoje);
+  // const timestampHoje = moment(hoje).format("YYYY-MM-DD");
 
   useEffect(() => {
     const q = query(
       collection(db, "caixa"),
-      where("data", ">=", timestampHoje)
+      where("data", "<=", timestampHoje)
     );
     const unsub = onSnapshot(q, (snapshot) => {
       const dataHoje = snapshot.docs.find(
@@ -88,7 +90,7 @@ export default function CaixaSimplificado() {
     const q = query(
       collection(db, "pedidos"),
       where("status", "==", "finalizado"),
-      where("data", ">=", timestampHoje)
+      where("data", "<=", timestampHoje)
     );
     const unsub = onSnapshot(q, (snapshot) => {
       const lista = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -108,6 +110,7 @@ export default function CaixaSimplificado() {
       .filter((p) => p.pagamento === "dinheiro")
       .reduce((acc, p) => acc + p.total, 0);
     setTotais({ pix, cartao, dinheiro });
+    console.log(pedidos);
   }, [pedidos]);
 
   const abrirCaixa = async () => {

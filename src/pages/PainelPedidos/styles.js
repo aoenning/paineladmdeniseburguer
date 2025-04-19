@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Titulo = styled.h1`
   text-align: center;
-  color: ${colors.white};
+  color: ${colors.cinza_leve_05};
   font-family: ${fonts.primary};
   /* margin-bottom: 2rem; */
 `;
@@ -35,7 +35,7 @@ export const TitleNome = styled.p`
   text-align: start;
   font-size: 1.2rem;
   font-family: ${fonts.primary};
-  color: ${colors.brack};
+  color: ${colors.cinza_forte};
   font-weight: bold;
 `;
 
@@ -50,7 +50,7 @@ export const LiCard = styled.li`
   font-family: ${fonts.primary};
   margin-top: 10px;
   font-weight: bold;
-  color: ${colors.brack};
+  color: ${colors.header};
 `;
 
 export const LiCardAdicional = styled.li`
@@ -86,7 +86,7 @@ export const StatusTitle = styled.p`
   margin-bottom: 1rem;
   font-size: 1.5rem;
   font-family: ${fonts.primary};
-  color: ${colors.white};
+  color: ${colors.cinza_leve_05};
 `;
 
 export const Card = styled.div`

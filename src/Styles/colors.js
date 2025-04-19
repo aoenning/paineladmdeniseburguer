@@ -26,7 +26,7 @@ const colors = {
   brue_leve: "#93b7d6",
   yello: "#F5ECCE",
   yello_primary: "#f2a900",
-  yello_segudary: "#ff9800",
+  yello_segudary: "#ff9800", 
 };
 
 export default colors;

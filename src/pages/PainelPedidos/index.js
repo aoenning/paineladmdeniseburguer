@@ -21,6 +21,7 @@ const PainelPedidos = () => {
     const unsubscribe = onSnapshot(collection(db, "pedidos"), (snapshot) => {
       const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setPedidos(data);
+      playNotificationSound();
     });
 
     return () => unsubscribe(); // importante limpar o listener quando desmontar
@@ -51,6 +52,32 @@ const PainelPedidos = () => {
     const date = new Date(timestamp.seconds * 1000); // Converte o timestamp do Firebase
     return moment(date).format("DD/MM/YYYY HH:mm");
   };
+
+  const playNotificationSound = () => {
+    // const audio = new Audio("/sounds/notificacao.mp3");
+    // audio.play();
+    // desbloquearSom();
+  };
+
+  // const desbloquearSom = () => {
+  //   const audio = new Audio("/sounds/notificacao.mp3");
+
+  //   audio
+  //     .play()
+  //     .then(() => {
+  //       console.log("Som autorizado");
+  //     })
+  //     .catch((err) => {
+  //       console.log("Som não tocou ainda, mas agora está liberado");
+  //     });
+  //   window.removeEventListener("click", desbloquearSom);
+  // };
+
+  // window.addEventListener("click", desbloquearSom);
+
+  // return () => {
+  //   window.removeEventListener("click", desbloquearSom);
+  // };
 
   return (
     <s.Container>
@@ -84,6 +111,10 @@ const PainelPedidos = () => {
                       </s.Descricao>
                       <s.Descricao>Troco: {pedido.troco.valor}</s.Descricao>
                     </s.AreaSub>
+                    <s.Descricao>
+                      Entregar? {""}
+                      {pedido.tipoEntrega === "entrega" ? "Sim" : "Não"}
+                    </s.Descricao>
                     <s.DescricaoValor>
                       Total:{" "}
                       {pedido.total.toLocaleString("pt-BR", {
@@ -111,7 +142,7 @@ const PainelPedidos = () => {
                     {pedido.itens.map((item, index) => (
                       <>
                         <s.LiCard key={index}>
-                          {item.quantidade}x {item.nome}
+                          {item.quantidade}x {item.nome} / {item.tipoQueijo}
                           {item.adicionais
                             .filter((add) => add.quantidade > 0)
                             .map((add, indexa) => (

@@ -76,6 +76,8 @@ export default function CaixaSimplificado() {
       const dataHoje = snapshot.docs.find(
         (doc) => doc.data().status !== "fechado"
       );
+
+      console.log(dataHoje);
       setStatusCaixa(dataHoje ? { id: dataHoje.id, ...dataHoje.data() } : null);
     });
     return () => unsub();

@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 const SidebarContainer = styled.div`
-  width: 250px;
+  width: 170px;
   background-color: #1e1e2f;
   color: #fff;
   height: 100vh;

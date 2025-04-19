@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { db, storage } from "./../firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
 // import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { v4 as uuidv4 } from "uuid";
 import { colors, fonts } from "./../Styles";
@@ -79,13 +79,15 @@ const TextArea = styled.textarea`
   /* margin-bottom: 60px; */
 `;
 
-export default function CadastroProduto() {
-  const [id, setId] = useState(0);
-  const [nome, setNome] = useState("");
-  const [detalhe, setDetalhe] = useState("");
-  const [preco, setPreco] = useState("");
-  const [categoria, setCategoria] = useState("Tradicional");
-  const [img, setImg] = useState("");
+export default function CadastroProduto({ produtoEditando }) {
+  const [id, setId] = useState(produtoEditando.id);
+  const [nome, setNome] = useState(produtoEditando.nome);
+  const [detalhe, setDetalhe] = useState(produtoEditando.detalhe);
+  const [preco, setPreco] = useState(produtoEditando.preco);
+  const [categoria, setCategoria] = useState(
+    produtoEditando.categoria ? produtoEditando.categoria : "tradicional"
+  );
+  const [img, setImg] = useState(produtoEditando.img);
   const [preview, setPreview] = useState(null);
   const [adicionais, setAdicionais] = useState([]);
   const [novoAdicional, setNovoAdicional] = useState({ nome: "", preco: "" });
@@ -109,13 +111,36 @@ export default function CadastroProduto() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if (!img) return alert("Selecione uma imagem!");
+    if (!produtoEditando.id) {
+      await addDoc(collection(db, "produtos"), {
+        id,
+        nome,
+        detalhe,
+        preco: parseFloat(preco),
+        categoria,
+        img, //urlImagem,
+        //   adicionais,
+        disponivel: true,
+      });
 
-    // const imgRef = ref(storage, `hamburgueres/${uuidv4()}-${imagem.name}`);
-    // await uploadBytes(imgRef, imagem);
-    // const urlImagem = await getDownloadURL(imgRef);
+      alert("Hambúrguer cadastrado com sucesso!");
+      setId("");
+      setNome("");
+      setDetalhe("");
+      setPreco("");
+      setCategoria("Tradicional");
+      setImg("");
+      setPreview(null);
+      setAdicionais([]);
+    }
 
-    await addDoc(collection(db, "produtos"), {
+    handleUpadteProduto();
+  };
+
+  const handleUpadteProduto = async () => {
+    if (!id) return;
+
+    await updateDoc(doc(db, "produtos", id), {
       id,
       nome,
       detalhe,
@@ -125,16 +150,6 @@ export default function CadastroProduto() {
       //   adicionais,
       disponivel: true,
     });
-
-    alert("Hambúrguer cadastrado com sucesso!");
-    setId("");
-    setNome("");
-    setDetalhe("");
-    setPreco("");
-    setCategoria("Tradicional");
-    setImg("");
-    setPreview(null);
-    setAdicionais([]);
   };
 
   return (

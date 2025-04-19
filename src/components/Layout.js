@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Sidebar from "./Sidebar";
 
 const Content = styled.div`
-  margin-left: 250px;
+  margin-left: 200px;
   padding: 2rem;
   background-color: #333;
 

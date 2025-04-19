@@ -54,6 +54,11 @@ export default function CadastroProduto() {
   const [abrirPainel, setAbrirPainel] = useState(false);
   const [produtoEditando, setProdutoEditando] = useState(null);
 
+  function handleClose(value) {
+    setAbrirPainel(value);
+    setProdutoEditando("");
+  }
+
   return (
     <>
       <Container>
@@ -81,12 +86,12 @@ export default function CadastroProduto() {
             <FormProduto
               onClose={() => {
                 setAbrirPainel(false);
-                setProdutoEditando(null);
+                setProdutoEditando(produtoEditando);
               }}
               produtoEditando={produtoEditando}
             />
             <Button
-              onClick={() => setAbrirPainel(false)}
+              onClick={() => handleClose(false)}
               style={{ marginTop: "1rem" }}
             >
               ❌ Fechar

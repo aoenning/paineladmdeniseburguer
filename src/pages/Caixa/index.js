@@ -72,7 +72,7 @@ export default function CaixaSimplificado() {
   useEffect(() => {
     const q = query(
       collection(db, "caixa"),
-      where("data", "<=", timestampHoje)
+      where("data", ">=", timestampHoje)
     );
     const unsub = onSnapshot(q, (snapshot) => {
       const dataHoje = snapshot.docs.find(
@@ -90,7 +90,7 @@ export default function CaixaSimplificado() {
     const q = query(
       collection(db, "pedidos"),
       where("status", "==", "finalizado"),
-      where("data", "<=", timestampHoje)
+      where("data", ">=", timestampHoje)
     );
     const unsub = onSnapshot(q, (snapshot) => {
       const lista = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
